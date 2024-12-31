@@ -1,0 +1,20 @@
+{
+  "name": "hydrion-s3lfb0t",
+  "version": "0.0.1",
+  "description": "the best selfbot made by hydradevx",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "setup": "npm install"
+  },
+  "author": "Hydra_devx",
+  "license": "MIT",
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "chalk": "^5.4.1",
+    "discord.js-selfbot-v13": "^3.4.2",
+    "fs": "^0.0.1-security",
+    "node-fetch": "^3.3.2",
+    "path": "^0.12.7"
+  }
+}
