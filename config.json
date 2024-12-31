@@ -1,3 +1,4 @@
 {
-  "token": "idk"
+  "token": "YOUR_DISCORD_TOKEN",
+  "prefix": "!"
 }
