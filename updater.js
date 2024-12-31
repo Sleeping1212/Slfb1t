@@ -1,95 +1,129 @@
-const fs = require('fs');
-const path = require('path');
-const fetch = require('node-fetch');
-const AdmZip = require('adm-zip');
+const axios = require("axios");
+const path = require("path");
+const admZip = require("adm-zip");
+const os = require("os");
+const fse = require("fs-extra");
+const readline = require("readline");
 
-const REPO_URL = 'https://github.com/Hydrion-Tools/Hydrion-S3LFB0T';
-const CONFIG_FILE = 'config.json';
-const TEMP_ZIP = path.join(__dirname, 'repo.zip');
+exports.checkUpdate = async (client, cp, Json) => {
+    const askUser = (question) => {
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout,
+        });
 
-async function isNewerVersion(installed, latest) {
-    const [major1, minor1, patch1] = installed.split('.').map(Number);
-    const [major2, minor2, patch2] = latest.split('.').map(Number);
-    return (
-        major2 > major1 ||
-        (major2 === major1 && minor2 > minor1) ||
-        (major2 === major1 && minor2 === minor1 && patch2 > patch1)
-    );
-}
+        return new Promise((resolve) => {
+            rl.question(question, (answer) => {
+                rl.close();
+                resolve(answer.trim().toLowerCase());
+            });
+        });
+    };
 
-async function getRemotePackageJson() {
-    const url = `${REPO_URL}/raw/main/package.json`;
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`Failed to fetch remote package.json: ${response.statusText}`);
-    }
-    return response.json();
-}
+    try {
+        const headers = {
+            "User-Agent":
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537",
+        };
+        const response = await axios.get(
+            `https://raw.githubusercontent.com/Hydrion-Tools/Hydrion-S3LFB0T/main/package.json`,
+            { headers },
+        );
+        const ghVersion = response.data.version;
+        const version = Json.version;
 
-async function downloadAndExtractZip() {
-    const zipUrl = `${REPO_URL}/archive/refs/heads/main.zip`;
-    const response = await fetch(zipUrl);
+        if (ghVersion > version) {
+            const userResponse = await askUser(
+                "Would you like to update now? (yes/no): ",
+            );
 
-    if (!response.ok) {
-        throw new Error(`Failed to download repository: ${response.statusText}`);
-    }
+            if (userResponse === "yes" || userResponse === "y") {
+                const configPath = path.resolve(__dirname, "../config.json");
+                const backupPath = await backupConfig(client, configPath);
 
-    const buffer = await response.buffer();
-    fs.writeFileSync(TEMP_ZIP, buffer);
+                if (fse.existsSync(".git")) {
+                    try {
+                        cp.execSync("git --version");
+                        client.logger.warn(
+                            "Bot",
+                            "Updater",
+                            "Updating with Git...",
+                        );
+                        await gitUpdate(client, cp);
+                    } catch (error) {
+                        client.logger.alert(
+                            "Bot",
+                            "Updater",
+                            `Git update error: ${error}`,
+                        );
+                    }
+                } else {
+                    await downloaddotgit(client, cp);
+                }
+                updateConfigFile(client, configPath, backupPath);
+            } 
+        }
+    } catch (error){}
+};
 
-    const zip = new AdmZip(TEMP_ZIP);
-    zip.extractAllTo(__dirname, true);
+const backupConfig = async (client, configPath) => {
+    try {
+        const tempDir = os.tmpdir();
+        const backupPath = path.join(tempDir, "config.backup.json");
 
-    fs.unlinkSync(TEMP_ZIP);
-}
-
-function updateFiles() {
-    const extractedFolderName = path.basename(REPO_URL) + '-main';
-    const extractedPath = path.join(__dirname, extractedFolderName);
-
-    if (!fs.existsSync(extractedPath)) {
-        throw new Error('Extracted folder not found.');
-    }
-
-    const files = fs.readdirSync(extractedPath);
-
-    files.forEach((file) => {
-        const srcPath = path.join(extractedPath, file);
-        const destPath = path.join(__dirname, file);
-
-        if (file === CONFIG_FILE) return;
-
-        if (fs.existsSync(destPath)) {
-            fs.rmSync(destPath, { recursive: true, force: true });
+        if (!fse.existsSync(tempDir)) {
+            throw new Error("Temp directory does not exist.");
         }
 
-        fs.renameSync(srcPath, destPath);
-    });
-
-    fs.rmSync(extractedPath, { recursive: true, force: true });
-}
-
-async function checkAndUpdate() {
-    const remotePackageJson = await getRemotePackageJson();
-    const remoteVersion = remotePackageJson.version;
-
-    const localPackageJsonPath = path.join(__dirname, 'package.json');
-    if (!fs.existsSync(localPackageJsonPath)) {
-        throw new Error('Local package.json not found.');
+        if (!fse.existsSync(configPath)) {
+            throw new Error("Config file does not exist.");
+        }
+        fse.copySync(configPath, backupPath);
+        return backupPath;
+    } catch (error) {
+        throw error;
     }
+};
 
-    const localPackageJson = JSON.parse(fs.readFileSync(localPackageJsonPath, 'utf8'));
-    const localVersion = localPackageJson.version;
+const updateConfigFile = (client, configPath, backupPath) => {
+    try {
+        if (!fse.existsSync(backupPath)) {
+            return;
+        }
 
-    if (await isNewerVersion(localVersion, remoteVersion)) {
-        console.log(`Updating from version ${localVersion} to ${remoteVersion}...`);
-        await downloadAndExtractZip();
-        updateFiles();
-        console.log('Update complete. Restarting bot...');
-        process.exit(0);
-    } else {
-        console.log('Already up-to-date.');
+        const backupConfig = fse.readJsonSync(backupPath);
+        const updatedConfig = fse.readJsonSync(configPath);
+
+        const mergedConfig = { ...updatedConfig, ...backupConfig };
+
+        for (const key in backupConfig) {
+            if (updatedConfig.hasOwnProperty(key)) {
+                mergedConfig[key] = backupConfig[key];
+            }
+        }
+
+        fse.writeJsonSync(configPath, mergedConfig, { spaces: 2 });
+        fse.unlinkSync(backupPath);
+    } catch (error) {}
+};
+
+const gitUpdate = async (client, cp) => {
+    try {
+        cp.execSync("git stash");
+        cp.execSync("git pull --force");
+        cp.execSync("git reset --hard");
+    } catch (error) {}
+};
+
+const downloaddotgit = async (client, cp) => {
+    const repoUrl = "https://github.com/Hydrion-Tools/Hydrion-S3LFB0T.git";
+    const targetFolder = path.join(__dirname, "../.git");
+
+    if (!fse.existsSync(targetFolder)) {
+        fse.mkdirSync(targetFolder, { recursive: true });
     }
-}
+    const cloneCommand = `git clone --bare ${repoUrl} ${targetFolder}`;
 
-module.exports = { checkAndUpdate };
+    cp.execSync(cloneCommand, { stdio: "inherit" });
+    await gitUpdate(client, cp);
+};
