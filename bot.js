@@ -1,7 +1,7 @@
 const { Client, Presence } = require('discord.js-selfbot-v13');
 const fs = require('fs');
 const path = require('path');
-const config = fs.readFileSync('config.json', 'utf-8');
+const config = fs.readFileSync('config.json');
 const updater = require('./updater.js');
 
 const client = new Client({ checkupdates: false });
