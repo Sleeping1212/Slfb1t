@@ -3,7 +3,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const AdmZip = require('adm-zip');
 
-const REPO_URL = 'https://github.com/Hydradevx/Hydrion-S3LFB0T';
+const REPO_URL = 'https://github.com/Hydrion-Tools/Hydrion-S3LFB0T';
 const CONFIG_FILE = 'config.json';
 const TEMP_ZIP = path.join(__dirname, 'repo.zip');
 
