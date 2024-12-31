@@ -1,6 +1,5 @@
 const axios = require("axios");
 const path = require("path");
-const admZip = require("adm-zip");
 const os = require("os");
 const fse = require("fs-extra");
 const readline = require("readline");
