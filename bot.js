@@ -4,7 +4,7 @@ const { checkUpdate } = require('./utils/updateChecker.js');
 const Json = require("./package.json");
 const path = require('path');
 const colors = require('ansi-colors');
-const { initLogger, status } = require('./utils/logger');
+const { initLogger, status, warn } = require('./utils/logger');
 const { logdeviceInfo } = require('./utils/infoLog.js');
 
 
@@ -52,9 +52,9 @@ client.on('messageCreate', (message) => {
 
 let updated = checkUpdate(Json);
 if (updated) {
-    client.login(token);
+  client.login(token);
 } else {
-    console.log('Please backup your config.json and install the latest version to continue using Hydrion!! Thank you');
+  warn('Please backup your config.json and install the latest version to continue using Hydrion!! Thank you');
 }
 
 const VERSION = Json.version;
@@ -66,13 +66,14 @@ ${colors.cyanBright('██║░░██║╚██╗░██╔╝██�
 ${colors.cyanBright('███████║░╚████╔╝░██║░░██║██████╔╝██║██║░░██║██╔██╗██║')}
 ${colors.cyanBright('██╔══██║░░╚██╔╝░░██║░░██║██╔══██╗██║██║░░██║██║╚████║')}
 ${colors.cyanBright('██║░░██║░░░██║░░░██████╔╝██║░░██║██║╚█████╔╝██║░╚███║')}
-${colors.cyanBright('╚═╝░░╚═╝░░░╚═╝░░░╚═════╝░╚═╝░░╚═╝╚═╝░╚════╝░╚═╝░░╚══╝')}
+${colors.cyanBright(`╚═╝░░╚═╝░░░╚═╝░░░╚═════╝░╚═╝░░╚═╝╚═╝░╚════╝░╚═╝░░╚══╝ v${VERSION}`)}
 `;
   console.clear();
   console.log(textArt);
 }
 
 function startlogs() {
+  console.clear();
   displayTextArt();
   console.log(colors.green(`\nVersion: ${VERSION}`));
   console.log(colors.gray('Initializing logs...\n'));
@@ -82,3 +83,8 @@ function startlogs() {
 
 startlogs();
 logdeviceInfo();
+
+let raidsEnabled = false;
+const enableRaidsMessage = `💥 Enable raids by using ${prefix}enableraids`;
+
+module.exports = { raidsEnabled, enableRaidsMessage };
