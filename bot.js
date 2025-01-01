@@ -1,15 +1,16 @@
 const { Client, Presence, Collection } = require('discord.js-selfbot-v13');
 const fs = require('fs');
-const { checkUpdate } = require('./updateChecker.js');
+const { checkUpdate } = require('./utils/updateChecker.js');
 const Json = require("./package.json");
 const path = require('path');
+const colors = require('ansi-colors');
+const { initLogger, status } = require('./utils/logger');
 
 
 let config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
 // let config = JSON.parse(fs.readFileSync('./devconfig/config.json', 'utf-8'));
 
 
-const updated = checkUpdate(Json);
 const client = new Client({ checkupdates: false });
 const token = config.token;
 const prefix = config.prefix;
@@ -33,7 +34,7 @@ for (const file of commandFiles) {
 }
 
 client.on('ready', async () => {
-  console.log(`Logged in as ${client.user.tag}`);
+  status(`Logged in as ${client.user.tag}`);
 });
 
 
@@ -48,9 +49,34 @@ client.on('messageCreate', (message) => {
 });
 
 
+let updated = checkUpdate(Json);
 if (updated) {
-  client.login(token); 
+    client.login(token);
+} else {
+    console.log('Please backup your config.json and install the latest version to continue using Hydrion!! Thank you');
 }
-else {
-  console.log("Selfbot will not start due to outdated version");
+
+const VERSION = Json.version;
+
+function displayTextArt() {
+  const textArt = `
+${colors.cyanBright('██╗░░██╗██╗░░░██╗██████╗░██████╗░██╗░█████╗░███╗░░██╗')}
+${colors.cyanBright('██║░░██║╚██╗░██╔╝██╔══██╗██╔══██╗██║██╔══██╗████╗░██║')}
+${colors.cyanBright('███████║░╚████╔╝░██║░░██║██████╔╝██║██║░░██║██╔██╗██║')}
+${colors.cyanBright('██╔══██║░░╚██╔╝░░██║░░██║██╔══██╗██║██║░░██║██║╚████║')}
+${colors.cyanBright('██║░░██║░░░██║░░░██████╔╝██║░░██║██║╚█████╔╝██║░╚███║')}
+${colors.cyanBright('╚═╝░░╚═╝░░░╚═╝░░░╚═════╝░╚═╝░░╚═╝╚═╝░╚════╝░╚═╝░░╚══╝')}
+`;
+  console.clear();
+  console.log(textArt);
 }
+
+function startlogs() {
+  displayTextArt();
+  console.log(colors.green(`\nVersion: ${VERSION}`));
+  console.log(colors.gray('Initializing logs...\n'));
+
+  initLogger();
+}
+
+startlogs();
