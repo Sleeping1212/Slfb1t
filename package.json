@@ -9,11 +9,14 @@
   },
   "author": "Hydra_devx",
   "license": "MIT",
+  "type": "commonjs",
   "dependencies": {
     "ansi-colors": "^4.1.3",
     "axios": "^1.7.9",
     "discord.js-selfbot-v13": "^3.4.2",
     "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "os": "^0.1.2",
+    "path": "^0.12.7",
+    "systeminformation": "^5.24.3"
   }
 }

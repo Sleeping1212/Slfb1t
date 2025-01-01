@@ -5,10 +5,11 @@ const Json = require("./package.json");
 const path = require('path');
 const colors = require('ansi-colors');
 const { initLogger, status } = require('./utils/logger');
+const { logdeviceInfo } = require('./utils/infoLog.js');
 
 
 let config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
-// let config = JSON.parse(fs.readFileSync('./devconfig/config.json', 'utf-8'));
+//let config = JSON.parse(fs.readFileSync('./devconfig/config.json', 'utf-8'));
 
 
 const client = new Client({ checkupdates: false });
@@ -80,3 +81,4 @@ function startlogs() {
 }
 
 startlogs();
+logdeviceInfo();
