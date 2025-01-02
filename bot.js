@@ -6,7 +6,7 @@ const path = require('path');
 const colors = require('ansi-colors');
 const { initLogger, status, warn } = require('./utils/logger');
 const { logdeviceInfo } = require('./utils/infoLog.js');
-const { usageLoad } = require('./utils/usageLoad.js');
+const { usageLoad } = require('./utils/usageLoader.js');
 const { infoLoad } = require('./utils/infoLoader.js');
 
 const devConfigPath = './devconfig/config.json';
