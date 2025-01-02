@@ -6,6 +6,8 @@ const path = require('path');
 const colors = require('ansi-colors');
 const { initLogger, status, warn } = require('./utils/logger');
 const { logdeviceInfo } = require('./utils/infoLog.js');
+const { usageLoad } = require('./utils/usageLoad.js');
+const { infoLoad } = require('./utils/infoLoader.js');
 
 const devConfigPath = './devconfig/config.json';
 const regularConfigPath = './config.json';
@@ -55,10 +57,22 @@ client.on('messageCreate', (message) => {
   const commandName = args.shift().toLowerCase();
   const command = client.commands.get(commandName);
   if (!command) return;
-
-  // add smth to check if args[0] is --usage then return and excute usageloader
-  command.execute(message, args);
+  if (args[0] === '--usage')  {
+    usageLoad(command, message);
+    return;
+  }
+  if (args[0] === '--info')  {
+    infoLoad(command, message);
+    return;
+  }
+  command.execute(message, args, prefix);
 });
+
+let client_info = {
+  raidsEnabled: false,
+  moreCmdSoonMessage: "✨ **More Commands Coming Soon!** ✨"
+}
+client.info = client_info;
 
 let rpc = (serverIconUrl) => {
   let stat = {
@@ -112,8 +126,3 @@ function startlogs() {
 
 startlogs();
 logdeviceInfo();
-
-let raidsEnabled = false;
-const enableRaidsMessage = `💥 Enable raids by using ${prefix}enableraids`;
-
-module.exports = { raidsEnabled, enableRaidsMessage, prefix };

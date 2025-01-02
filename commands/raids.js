@@ -1,64 +1,45 @@
-const { log, info } = require('../utils/logger');
-const { raidsEnabled, enableRaidsMessage, prefix } = require('../bot.js');
-
+const { log } = require('../utils/logger');
 
 module.exports = {
   name: 'raids',
-  aliases: ['r'],
-  execute(message, args) {
-    const page = args[0]; 
-    message.delete();
-    let raidsMessage;
-    if (raidsEnabled === true) {
-        if (page === "1") {
-            raidsMessage = `
-🚨 **Raids Commands - Page 1** 🚨
->------------------------------------<
-        
-⚔️ **Command List:**
-    
-🌪️ ${prefix}spam <amount> <interval in ms> <msg>           -  Spam a message in a specified channel
-💥 ${prefix}nuke                                           -  Execute a nuke command (use responsibly)
-🚀 ${prefix}raidstart <msg>                                -  Start a raid operation in the server
-🛡️ ${prefix}raidstop                                       -  Stop the ongoing raid operation
-🔧 ${prefix}clear <number>                                 -  Clear the specified number of messages from the channel
-        
->------------------------------------<
-🌟 For more raid commands, use: \`${prefix}raids 2\`
->------------------------------------<
-✨ Selfbot crafted by \`@hydradevx\`
->------------------------------------<
-            `; 
-        } else if (page === "2") {
-            raidsMessage = `
-🚨 **Raids Commands - Page 2** 🚨
->------------------------------------<
-                
-⚔️ **Command List:**
-                
-🔨 ${prefix}deleteChannels                           -  Delete all channels in the server (requires confirmation)
-🎭 ${prefix}deleteRoles                              -  Delete all roles in the server (requires confirmation)
-🚫 ${prefix}banAllMembers                            -  Ban all members in the server (requires confirmation)
-🧹 ${prefix}clearAllMessages                         -  Delete all messages across all channels (requires confirmation)
-📁 ${prefix}deleteCategories                         -  Delete all categories in the server (requires confirmation)
-🔥 ${prefix}destroy                                  -  Perform a full server wipe, deleting channels, roles, members, and categories (requires confirmation)
-                
->------------------------------------<
-🌟 Use these commands responsibly. Always double-check before proceeding!
->------------------------------------<
-✨ Selfbot crafted by \`@hydradevx\`
->------------------------------------<
-            `; 
-        } else {
-            return message.channel.send(moreCmdSoonMessage);
-        }
-        log(`Raids Command has been excuted! selected page was page${page}`);
-        message.channel.send(raidsMessage);
-    }
-    else if (raidsEnabled === false) {
-        message.channel.send(enableRaidsMessage);
-        message.delete();
-        info(`Raids Command has not been excuted because raids are disabled!`);
-    }
+  aliases: ['r', 'raid'],
+  execute(message, args, prefix) {
+    page = args[0] || 1;
+    message.delete()
+    message.reply(loadraidmsg(page, prefix));
+    log(`Raids Command has been excuted and page is ${page}`)
+  }
+};
+
+function loadraidmsg(page, prefix) {
+  if (page == 1) {
+    return(`
+> ## 🚨 **Raids Commands - Page 1** 🚨
+> ⚔️ **Command List:**
+> 🌪️ **${prefix}spam <amount> <interval in ms> <msg>**           
+> 💥 **${prefix}nuke**                                          
+> 🚀 **${prefix}raidstart <msg>**                                
+> 🛡️ **${prefix}raidstop**                                      
+> 🔧 **${prefix}clear <number>**                                 
+> 
+> ✨ Selfbot crafted by \`@hydradevx\`
+    `);
+  }
+  else if (page == 2) {
+    return(`
+> ## 🚨 **Raids Commands - Page 2** 🚨
+> ⚔️ **Command List:**
+> 🔨 **${prefix}deleteChannels**                           - Delete all channels in the server (requires confirmation)
+> 🎭 **${prefix}deleteRoles**                              - Delete all roles in the server (requires confirmation)
+> 🚫 **${prefix}banAllMembers**                            - Ban all members in the server (requires confirmation)
+> 🧹 **${prefix}clearAllMessages**                         - Delete all messages across all channels (requires confirmation)
+> 📁 **${prefix}deleteCategories**                         - Delete all categories in the server (requires confirmation)
+> 🔥 **${prefix}destroy**                                  - Perform a full server wipe, deleting channels, roles, members, and categories (requires confirmation)
+> 
+> ✨ Selfbot crafted by \`@hydradevx\`
+   `);
+  }
+   else {
+    return('> ✨ **More Commands Coming Soon!** ✨');
   }
 }
