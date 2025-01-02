@@ -1,4 +1,4 @@
-const { Client, Presence, Collection } = require('discord.js-selfbot-v13');
+const { Client, RichPresence, Collection } = require('discord.js-selfbot-v13');
 const fs = require('fs');
 const { checkUpdate } = require('./utils/updateChecker.js');
 const Json = require("./package.json");
@@ -7,14 +7,21 @@ const colors = require('ansi-colors');
 const { initLogger, status, warn } = require('./utils/logger');
 const { logdeviceInfo } = require('./utils/infoLog.js');
 
+const devConfigPath = './devconfig/config.json';
+const regularConfigPath = './config.json';
+let config;
 
-let config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
-//let config = JSON.parse(fs.readFileSync('./devconfig/config.json', 'utf-8'));
+if (fs.existsSync(path.dirname(devConfigPath))) {
+    config = JSON.parse(fs.readFileSync(devConfigPath, 'utf-8'));
+    status(`Using dev config.`);
+} else {
+    config = JSON.parse(fs.readFileSync(regularConfigPath, 'utf-8'));
+}
 
 
 const client = new Client({ checkupdates: false });
 const token = config.token;
-const prefix = config.prefix;
+let prefix = config.prefix;
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
@@ -36,6 +43,8 @@ for (const file of commandFiles) {
 
 client.on('ready', async () => {
   status(`Logged in as ${client.user.tag}`);
+  const serverIconUrl = "https://cdn.discordapp.com/icons/1315224713932443668/a_1234567890123456789012345678901234567890.png";
+  rpc(serverIconUrl);
 });
 
 
@@ -46,9 +55,29 @@ client.on('messageCreate', (message) => {
   const commandName = args.shift().toLowerCase();
   const command = client.commands.get(commandName);
   if (!command) return;
+
+  // add smth to check if args[0] is --usage then return and excute usageloader
   command.execute(message, args);
 });
 
+let rpc = (serverIconUrl) => {
+  let stat = {
+    name: "Hydrion S3LFB0T",
+    type: "PLAYING",
+    details: "Using the best selfbot",
+    timestamps: { start: Date.now() },
+    assets: {
+      large_image: serverIconUrl, 
+      large_text: "Hydrion S3LFB0T",
+    },
+    buttons: [
+      { label: "SelfBot", url: "https://github.com/Hydrion-Tools/Hydrion-S3LFB0T" },
+      { label: "Discord", url: "https://discord.gg/6Tufbvnebj" }
+    ],
+  };
+  client.user.setPresence({ activities: [stat] });
+  status('Started Discord RPC')
+}
 
 let updated = checkUpdate(Json);
 if (updated) {
@@ -87,4 +116,4 @@ logdeviceInfo();
 let raidsEnabled = false;
 const enableRaidsMessage = `💥 Enable raids by using ${prefix}enableraids`;
 
-module.exports = { raidsEnabled, enableRaidsMessage };
+module.exports = { raidsEnabled, enableRaidsMessage, prefix };

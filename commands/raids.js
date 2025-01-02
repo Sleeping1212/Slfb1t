@@ -1,5 +1,6 @@
 const { log, info } = require('../utils/logger');
-const { raidsEnabled, enableRaidsMessage } = require('../bot.js');
+const { raidsEnabled, enableRaidsMessage, prefix } = require('../bot.js');
+
 
 module.exports = {
   name: 'raids',
