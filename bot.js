@@ -45,13 +45,11 @@ for (const file of commandFiles) {
 
 client.on('ready', async () => {
   status(`Logged in as ${client.user.tag}`);
-  const serverIconUrl = "https://cdn.discordapp.com/icons/1315224713932443668/a_1234567890123456789012345678901234567890.png";
-  rpc(serverIconUrl);
 });
 
 
 client.on('messageCreate', (message) => {
-  if (message.author.bot || !message.content.startsWith(prefix)) return;
+  if (message.author.bot || !message.content.startsWith(prefix) || message.author.id !== client.user.id) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
@@ -74,23 +72,30 @@ let client_info = {
 }
 client.info = client_info;
 
-let rpc = (serverIconUrl) => {
-  let stat = {
-    name: "Hydrion S3LFB0T",
-    type: "PLAYING",
-    details: "Using the best selfbot",
-    timestamps: { start: Date.now() },
-    assets: {
-      large_image: serverIconUrl, 
-      large_text: "Hydrion S3LFB0T",
-    },
-    buttons: [
-      { label: "SelfBot", url: "https://github.com/Hydrion-Tools/Hydrion-S3LFB0T" },
-      { label: "Discord", url: "https://discord.gg/6Tufbvnebj" }
-    ],
-  };
-  client.user.setPresence({ activities: [stat] });
-  status('Started Discord RPC')
+function rpc() {
+  if (!client || !client.user) {
+    console.error("Client is not initialized or logged in.");
+    return;
+  }
+
+  const rich = new RichPresence(client)
+    .setApplicationId('1079010612769722508')
+    .setType("PLAYING")
+    .setName("Hydrion S3LFB0T")
+    .setDetails("Auto Farming")
+    .setStartTimestamp(Date.now())
+    .setAssetsLargeImage("https://cdn.discordapp.com/icons/1019121675532500992/a_8939bf1f5672dfc16cf278ac82241cc4.gif?size=2048")
+    .setAssetsLargeText("Hydrion S3LFB0T")
+    .addButton("Self Bot", "https://github.com/Hydrion-Tools/Hydrion-S3LFB0T")
+    .addButton("Discord", "https://discord.gg/6Tufbvnebj");
+
+  try {
+    client.user.setActivity(rich);
+    client.user.setPresence({ status: "online" });
+    status("Started Discord RPC");
+  } catch (error) {
+    warn("Failed to set status:", error);
+  }
 }
 
 let updated = checkUpdate(Json);
@@ -126,3 +131,4 @@ function startlogs() {
 
 startlogs();
 logdeviceInfo();
+rpc();

@@ -4,10 +4,11 @@ module.exports = {
   name: 'raids',
   aliases: ['r', 'raid'],
   execute(message, args, prefix) {
-    page = args[0] || 1;
-    message.delete()
-    message.reply(loadraidmsg(page, prefix));
-    log(`Raids Command has been excuted and page is ${page}`)
+    const page = args[0] || 1;
+    message.channel.send(loadraidmsg(page, prefix))
+    log(`Raids Command has been executed and page is ${page}`);
+      
+    message.delete();
   }
 };
 
@@ -29,17 +30,17 @@ function loadraidmsg(page, prefix) {
     return(`
 > ## 🚨 **Raids Commands - Page 2** 🚨
 > ⚔️ **Command List:**
-> 🔨 **${prefix}deleteChannels**                           - Delete all channels in the server (requires confirmation)
-> 🎭 **${prefix}deleteRoles**                              - Delete all roles in the server (requires confirmation)
-> 🚫 **${prefix}banAllMembers**                            - Ban all members in the server (requires confirmation)
-> 🧹 **${prefix}clearAllMessages**                         - Delete all messages across all channels (requires confirmation)
-> 📁 **${prefix}deleteCategories**                         - Delete all categories in the server (requires confirmation)
-> 🔥 **${prefix}destroy**                                  - Perform a full server wipe, deleting channels, roles, members, and categories (requires confirmation)
+> 🔨 **${prefix}deleteChannels**
+> 🎭 **${prefix}deleteRoles**
+> 🚫 **${prefix}banAllMembers**
+> 🧹 **${prefix}clearAllMessages**
+> 📁 **${prefix}deleteCategories**
+> 🔥 **${prefix}destroy**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
    `);
   }
-   else {
+  else {
     return('> ✨ **More Commands Coming Soon!** ✨');
   }
 }
