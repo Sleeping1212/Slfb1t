@@ -3,7 +3,9 @@
 # Update and install dependencies
 echo "Updating and installing dependencies..."
 pkg update && pkg upgrade -y
-pkg install -y nodejs git pm2
+pkg install -y nodejs git
+
+rm -rf ./Hydrion-S3LFB0T
 
 # Clone the repository
 echo "Cloning the repository..."
@@ -25,11 +27,6 @@ cat <<EOF > config.json
 }
 EOF
 
-# Start the bot using pm2
+# Start the bot
 echo "Starting the selfbot with pm2..."
-pm2 start bot.js --name "hydrion-selfbot"
-
-# Save the pm2 process list and environment
-pm2 save
-
-echo "Bot is running with pm2."
+npm start

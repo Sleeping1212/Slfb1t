@@ -129,6 +129,13 @@ function startlogs() {
   initLogger();
 }
 
+const isTermux = () => process.env.TERMUX_VERSION || require('fs').existsSync('/data/data/com.termux/files/usr');
+
+if (isTermux()) {
+  log('Running on Termux');
+} else {
+  logdeviceInfo();
+}
+
 startlogs();
-logdeviceInfo();
 rpc();
