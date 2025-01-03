@@ -21,5 +21,5 @@ cat <<EOF > config.json
 EOF
 
 # Start the bot
-echo "Starting the selfbot with pm2..."
+echo "Starting the selfbot"
 npm start
