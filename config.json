@@ -1,5 +1,4 @@
 {
   "token": "YOUR_DISCORD_TOKEN",
-  "prefix": "!",
-  "hyd": true
+  "prefix": "!"
 }
