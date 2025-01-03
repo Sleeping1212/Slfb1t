@@ -5,13 +5,6 @@ echo "Updating and installing dependencies..."
 pkg update && pkg upgrade -y
 pkg install -y nodejs git
 
-rm -rf ./Hydrion-S3LFB0T
-
-# Clone the repository
-echo "Cloning the repository..."
-git clone https://github.com/Hydrion-Tools/Hydrion-S3LFB0T.git
-cd Hydrion-S3LFB0T || exit
-
 # Install Node.js dependencies
 echo "Installing Node.js dependencies..."
 npm install
