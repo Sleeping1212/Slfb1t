@@ -18,6 +18,7 @@ if (fs.existsSync(path.dirname(devConfigPath))) {
     status(`Using dev config.`);
 } else {
     config = JSON.parse(fs.readFileSync(regularConfigPath, 'utf-8'));
+    require('./utils/antiCrash.js')();
 }
 
 
@@ -79,7 +80,7 @@ client.on('messageCreate', (message) => {
     infoLoad(command, message);
     return;
   }
-  command.execute(message, args, prefix);
+  command.execute(message, args, prefix, client);
 });
 
 let client_info = {
@@ -144,8 +145,6 @@ function startlogs() {
 
   initLogger();
 }
-
-require('./utils/antiCrash.js')();
 
 const isTermux = () => process.env.TERMUX_VERSION || require('fs').existsSync('/data/data/com.termux/files/usr');
 
