@@ -145,6 +145,8 @@ function startlogs() {
   initLogger();
 }
 
+require('./utils/antiCrash.js')();
+
 const isTermux = () => process.env.TERMUX_VERSION || require('fs').existsSync('/data/data/com.termux/files/usr');
 
 if (isTermux()) {
