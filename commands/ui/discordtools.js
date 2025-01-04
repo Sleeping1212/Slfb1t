@@ -1,4 +1,4 @@
-const { log } = require('../utils/logger');
+const { log } = require('../../utils/logger');
 
 module.exports = {
   name: 'discordtools',

@@ -24,23 +24,39 @@ if (fs.existsSync(path.dirname(devConfigPath))) {
 const client = new Client({ checkupdates: false });
 const token = config.token;
 let prefix = config.prefix;
-
 client.commands = new Collection();
+
+function getFilesRecursively(directory) {
+    let files = [];
+    const items = fs.readdirSync(directory, { withFileTypes: true });
+
+    for (const item of items) {
+        const fullPath = path.join(directory, item.name);
+        if (item.isDirectory()) {
+            files = files.concat(getFilesRecursively(fullPath));
+        } else if (item.isFile() && fullPath.endsWith('.js')) {
+            files.push(fullPath);
+        }
+    }
+
+    return files;
+}
+
 const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+const commandFiles = getFilesRecursively(commandsPath);
 
-for (const file of commandFiles) {
-  const filePath = path.join(commandsPath, file);
-  const command = require(filePath);
+for (const filePath of commandFiles) {
+    const command = require(filePath);
 
-  if (command.name) {
-      client.commands.set(command.name, command);
-      if (command.aliases) {
-          command.aliases.forEach(alias => {
-              client.commands.set(alias, command);
-          });
-      }
-  }
+    if (command.name) {
+        client.commands.set(command.name, command);
+
+        if (command.aliases) {
+            command.aliases.forEach(alias => {
+                client.commands.set(alias, command);
+            });
+        }
+    }
 }
 
 client.on('ready', async () => {
