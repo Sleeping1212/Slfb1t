@@ -12,3 +12,4 @@ git reset --hard origin/main || { echo "Failed to pull updates! Exiting..."; exi
 echo "Repository successfully updated."
 
 echo "Now rerun the setup script to continue the installation process."
+bash setup.sh
