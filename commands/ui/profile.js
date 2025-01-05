@@ -34,7 +34,6 @@ function loadprofilemsg(page, prefix) {
 > 🔍 **Command List:**
 > 🔴 **${prefix}dnd [reason]**
 > 🌙 **${prefix}idle [description]**
-> 🖼️ **${prefix}pfp @user**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
       `)

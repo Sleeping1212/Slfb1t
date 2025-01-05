@@ -9,7 +9,7 @@ module.exports = {
     const channelCount = message.guild.channels.cache.size;
     const serverid = message.guild.id;
     const servername = message.guild.name;
-    const servericon = message.guild.iconURL({ format: "png" });
+    const servericon = message.guild.iconURL({ format: "png", dynamic:true, size:1024 });
     const servercreated = message.guild.createdAt;
     const serverowner = message.guild.ownerId;
 

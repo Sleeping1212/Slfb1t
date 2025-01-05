@@ -20,6 +20,7 @@ function loadinfomsg(page, prefix) {
 > 📈 **${prefix}stats**
 > 🏓 **${prefix}ping**
 > 🔍 **${prefix}userinfo @user**
+> 🖼️ **${prefix}pfp @user**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
     `)

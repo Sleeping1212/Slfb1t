@@ -21,7 +21,6 @@ if (fs.existsSync(path.dirname(devConfigPath))) {
     require('./utils/antiCrash.js')();
 }
 
-
 const client = new Client({ checkupdates: false });
 const token = config.token;
 let prefix = config.prefix;
@@ -62,8 +61,8 @@ for (const filePath of commandFiles) {
 
 client.on('ready', async () => {
   status(`Logged in as ${client.user.tag}`);
+  rpc(client);
 });
-
 
 client.on('messageCreate', (message) => {
   if (message.author.bot || !message.content.startsWith(prefix) || message.author.id !== client.user.id) return;
@@ -89,29 +88,37 @@ let client_info = {
 }
 client.info = client_info;
 
-function rpc() {
+function rpc(client) {
   if (!client || !client.user) {
     console.error("Client is not initialized or logged in.");
     return;
   }
-
-  const rich = new RichPresence(client)
-    .setApplicationId('1079010612769722508')
-    .setType("PLAYING")
-    .setName("Hydrion S3LFB0T")
-    .setDetails("Auto Farming")
-    .setStartTimestamp(Date.now())
-    .setAssetsLargeImage("https://cdn.discordapp.com/icons/1019121675532500992/a_8939bf1f5672dfc16cf278ac82241cc4.gif?size=2048")
-    .setAssetsLargeText("Hydrion S3LFB0T")
-    .addButton("Self Bot", "https://github.com/Hydrion-Tools/Hydrion-S3LFB0T")
-    .addButton("Discord", "https://discord.gg/6Tufbvnebj");
+  const rich = {
+    name: "Hydrion S3LFB0T", 
+    type: 'PLAYING', 
+    state: "Using Selfbot",
+    details: "Hydrion S3LFB0T",
+    startTimestamp: Date.now(),
+    largeImageKey: "hydrion_icon", 
+    largeImageText: "Hydrion S3LFB0T",
+    buttons: [
+      {
+        label: "Self Bot",
+        url: "https://github.com/Hydrion-Tools/Hydrion-S3LFB0T"
+      },
+      {
+        label: "Discord",
+        url: "https://discord.gg/6Tufbvnebj"
+      }
+    ]
+  };
 
   try {
     client.user.setActivity(rich);
     client.user.setPresence({ status: "online" });
-    status("Started Discord RPC");
+    log("Started Discord RPC");
   } catch (error) {
-    warn("Failed to set status:", error);
+    console.error("Failed to set status:", error);
   }
 }
 
@@ -131,7 +138,7 @@ ${colors.cyanBright('██║░░██║╚██╗░██╔╝██�
 ${colors.cyanBright('███████║░╚████╔╝░██║░░██║██████╔╝██║██║░░██║██╔██╗██║')}
 ${colors.cyanBright('██╔══██║░░╚██╔╝░░██║░░██║██╔══██╗██║██║░░██║██║╚████║')}
 ${colors.cyanBright('██║░░██║░░░██║░░░██████╔╝██║░░██║██║╚█████╔╝██║░╚███║')}
-${colors.cyanBright(`╚═╝░░╚═╝░░░╚═╝░░░╚═════╝░╚═╝░░╚═╝╚═╝░╚════╝░╚═╝░░╚══╝ v${VERSION}`)}
+${colors.cyanBright(`╚═╝░░╚═╝░░░╚═╝░░░╚═════╝░╚═╝░░╚═╝╚═╝░╚════╝░╚═╝░░╚══╝ SELFBOT v${VERSION}`)}
 `;
   console.clear();
   console.log(textArt);
@@ -155,4 +162,3 @@ if (isTermux()) {
 }
 
 startlogs();
-rpc();
