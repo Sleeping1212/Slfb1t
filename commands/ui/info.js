@@ -25,6 +25,14 @@ function loadinfomsg(page, prefix) {
 > ✨ Selfbot crafted by \`@hydradevx\`
     `)
   }
+  if (page == 2) {
+    return(`
+> ## 🌟 **Info Commands - Page 2** 🌟
+> 👥 **${prefix}roles @user**
+> 
+> ✨ Selfbot crafted by \`@hydradevx\`
+    `)
+  }
   else {
     return(`> ✨ **More Commands Coming Soon!** ✨`)
   }

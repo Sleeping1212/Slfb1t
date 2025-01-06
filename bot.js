@@ -8,6 +8,7 @@ const { initLogger, status, warn, log } = require('./utils/logger');
 const { logdeviceInfo } = require('./utils/infoLog.js');
 const { usageLoad } = require('./utils/usageLoader.js');
 const { infoLoad } = require('./utils/infoLoader.js');
+const afkState = require('./managers/afkState.js');
 
 const devConfigPath = './devconfig/config.json';
 const regularConfigPath = './config.json';
@@ -65,6 +66,12 @@ client.on('ready', async () => {
 });
 
 client.on('messageCreate', (message) => {
+  if (message.author.id !== client.user.id) {
+    if (afkState.afkStatus && message.mentions.has(client.user)) {
+      message.reply(`💤 I'm currently AFK. Reason: ${afkState.afkReason}`);
+    }
+    return;
+  }
   if (message.author.bot || !message.content.startsWith(prefix) || message.author.id !== client.user.id) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);

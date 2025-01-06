@@ -1,16 +1,18 @@
-const { status } = require('../../utils/logger');
+const { log } = require('../../utils/logger.js');
 
 module.exports = {
   name: 'play',
-  aliases: ['p'],
-  execute(message, args, client) {
-    const pres = args.join(' ');
-    if(pres) {
-      client.user.setActivity(pres, { type: 'PLAYING' });
-      status(`Playing ${pres}`);
-      message.channel.send(`🎮 You are now playing **${pres}**!`);
+  aliases: ['game', 'playGame', 'setGame'], 
+  async execute(message, args, client) {
+    await message.delete();
+    const activityDescription = args.slice(1).join(" ").trim(); 
+    if (activityDescription) {
+      await client.user.setActivity(activityDescription, { type: "PLAYING" });
+      message.channel.send(`🎮 You are now playing **${activityDescription}**!`);
+      log(`User set their activity to playing: ${activityDescription}`);
     } else {
       message.channel.send("❌ Please provide a game description.");
+      log("User attempted to set activity without providing a description.");
     }
   }
-}
+};

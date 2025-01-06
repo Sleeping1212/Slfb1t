@@ -11,18 +11,10 @@ const checkUpdate = async (Json) => {
     const ghVersion = response.data.version;
 
     const version = Json.version;
-    let lilupd = Json.version + 0.1;
-
-    if (ghVersion > version && ghVersion > lilupd) { 
+    if (ghVersion > version) { 
         status(`New version available: ${ghVersion}`);
         warn(`Please backup your config.json and install the latest version to continue using Hydrion!! Thank you`)
         return false;
-    }
-    else if (ghVersion > version && ghVersion < lilupd) {
-        status(`New version available: ${ghVersion}`);
-        warn(`Please backup your config.json and install the latest version!! Thank you`);
-        warn(`continuing with the current version: ${version}`);
-        return true;
     }
     else {
         info(`You are running the latest version: ${version}`);
