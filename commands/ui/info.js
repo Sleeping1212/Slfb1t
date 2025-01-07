@@ -29,6 +29,8 @@ function loadinfomsg(page, prefix) {
     return(`
 > ## 🌟 **Info Commands - Page 2** 🌟
 > 👥 **${prefix}roles**
+> 🔧 **${prefix}setprefix**
+> 🔎 **${prefix}checkprefix**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
     `)
