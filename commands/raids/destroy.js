@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'destroy',
   aliases: ['destroyAll', 'annihilate', 'wipeServer'],
+  info: 'destroys the server',
+  usage: 'destroy',
   async execute(message) {
     await message.delete();
 

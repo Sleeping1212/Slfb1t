@@ -4,6 +4,8 @@ const { MessageAttachment } = require('discord.js-selfbot-v13');
 module.exports = {
   name: 'archive',
   aliases: ['archiveMessages'],
+  info: 'archives previously sent messages',
+  usage: 'archive [number]',
   async execute(message, args) {
     await message.delete();
     const numMessages = parseInt(args[0]) || 50;

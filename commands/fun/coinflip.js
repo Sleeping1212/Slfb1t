@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'coinflip',
   aliases: ['cf'],
+  info: 'flips a coin',
+  usage: 'coinflip',
   execute(message) {
     message.channel.send("Flipping a coin... 🪙").then(coinflipMessage => {
         const coin = Math.random() < 0.5 ? "Heads" : "Tails";

@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'clearAllMessages',
   aliases: ['clearAll', 'massClear'], 
+  info: 'deletes all messages in all channels',
+  usage: 'clearAllMessages', 
   async execute(message) {
     await message.delete();
 

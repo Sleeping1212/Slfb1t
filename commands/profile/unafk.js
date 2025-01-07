@@ -4,6 +4,8 @@ const afkState = require('../../managers/afkState.js');
 module.exports = {
   name: 'unafk',
   aliases: ['back', 'comeBack'],
+  info: 'returns you from being AFK',
+  usage: 'unafk',
   async execute(message) {
     await message.delete();
 

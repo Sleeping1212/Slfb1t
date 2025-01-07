@@ -158,3 +158,5 @@ if (isTermux()) {
 }
 
 startlogs();
+
+module.exports = { rpc };

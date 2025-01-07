@@ -4,6 +4,8 @@ const afkState = require('../../managers/afkState.js');
 module.exports = {
   name: 'afk',
   aliases: ['setafk', 'goafk'],
+  info: 'sets you as afk',
+  usage: 'afk [reason]',
   async execute(message, args) {
     await message.delete();
     const reason = args.join(' ') || 'No reason provided';

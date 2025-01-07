@@ -3,10 +3,12 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'purge',
   aliases: ['clearmessages'],
+  info: 'purges messages sent by a specific user',
+  usage: 'purge [@user]',
   async execute(message, args) {
     await message.delete();
     const userToPurge = message.mentions.users.first();
-    const numMessages = parseInt(args[2]) || 50;
+    const numMessages = parseInt(args[1]) || 50;
 
     if (!userToPurge) {
       message.channel.send("❌ Please mention a user to purge messages.");

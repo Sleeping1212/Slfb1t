@@ -4,6 +4,8 @@ const { name } = require('../info/userinfo');
 module.exports = {
   name : 'spam',
   aliases : ['s'],
+  info : 'Spams a specified number of messages with a given interval',
+  usage : 'spam [number] [interval in ms] [message]',
   execute(message, args, prefix) {
     const count = parseInt(args[0]) || 50;
     const interval = parseInt(args[1]);

@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'deleteCategories',
   aliases: ['deleteAllCategories', 'removeCategories'], 
+  info: 'deletes all categories in the server',
+  usage: 'deleteCategories',
   async execute(message) {
     await message.delete();
 

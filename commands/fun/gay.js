@@ -3,9 +3,10 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'gay',
   aliases: ['ga'],
+  info: 'checks if a user is gay',
+  usage: 'gay [@user]',
   execute(message, args) {
-    const mentions = message.mentions.users;
-    const userToCheck = mentions.size > 0 ? mentions.first() : message.author;
+    const userToCheck = args[0] || message.author;
 
     message.channel.send(`Calculating how gay ${userToCheck.username} is 🌈`).then(gaycheckMessage => {
         const messages = [

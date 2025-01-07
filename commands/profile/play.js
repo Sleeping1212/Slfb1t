@@ -2,7 +2,9 @@ const { log } = require('../../utils/logger.js');
 
 module.exports = {
   name: 'play',
-  aliases: ['game', 'playGame', 'setGame'], 
+  aliases: ['game', 'playGame', 'setGame'],
+  info: 'sets the user to play a game',
+  usage: 'play [game]', 
   async execute(message, args, client) {
     await message.delete();
     const activityDescription = args.slice(1).join(" ").trim(); 

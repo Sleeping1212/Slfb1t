@@ -3,10 +3,12 @@ const { log } = require('../../utils/logger.js')
 module.exports = {
   name: 'rizz',
   aliases: ['pickup', 'flirt'],
+  info: 'rizzes up someone',
+  usage: 'rizz [@user]',
   execute(message, args) {
     message.delete();
 
-    const mentionedUser = message.mentions.users.first();
+    const mentionedUser = message.mentions.users.first() || args[0];
     const userToSendLine = mentionedUser || message.author;
 
     const pickupLines = [

@@ -3,7 +3,9 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'joke',
   aliases: ['funny', 'telljoke', 'jk'],
-  execute(message, args) {
+  info: 'tells a funny joke',
+  usage: 'joke',
+  execute(message) {
     message.channel.send("Loading a funny joke... 🤔").then(jokeMessage => {
         const jokes = [
             "Why don’t scientists trust atoms? Because they make up everything!",

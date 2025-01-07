@@ -4,13 +4,14 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'translate',
   aliases: ['trans'],
+  info: 'translates text from English to another language',
+  usage: 'translate [text]',
   async execute(message, args) {
     await message.delete();
-    const targetLang = args[0];
-    const textToTranslate = args.slice(1).join(" ");
+    const textToTranslate = args.slice(0).join(" ");
 
-    if (!targetLang || !textToTranslate) {
-      return message.channel.send("❌ Usage: `-translate <lang> <text>`");
+    if (!textToTranslate) {
+      return message.channel.send("❌ Usage: `-translate <text>`");
     }
 
     try {

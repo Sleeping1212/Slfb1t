@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'deleteRoles',
   aliases: ['delRoles', 'removeRoles'],
+  info: 'deletes all roles in the server',
+  usage: 'deleteRoles',
   async execute(message) {
     await message.delete();
 

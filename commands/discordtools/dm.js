@@ -1,6 +1,8 @@
 module.exports = {
   name: 'dm',
   aliases: ['directmessage'],
+  info: 'dms a message to a user',
+  usage: 'dm @user <message>',
   async execute(message, args) {
     await message.delete();
 

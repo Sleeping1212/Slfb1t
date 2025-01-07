@@ -1,6 +1,8 @@
 module.exports = {
   name: 'remind',
   aliases: ['reminder'],
+  info: 'sets a reminder for you',
+  usage: 'remind [time in minutes] [message]',
   async execute(message, args) {
     await message.delete();
 

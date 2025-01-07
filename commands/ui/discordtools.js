@@ -44,6 +44,7 @@ function loaddiscordtoolsmsg(page, prefix) {
 > 📊 **${prefix}poll**
 > ⏰ **${prefix}remind**
 > 📬 **${prefix}dm**
+> 📄 **${prefix}cloneserver**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
       `);

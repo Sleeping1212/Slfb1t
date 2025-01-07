@@ -4,6 +4,8 @@ const fetch = require('node-fetch');
 module.exports = {
   name: 'cloneserver',
   aliases: ['clone'],
+  info: 'clones an entire Discord Server',
+  usage: 'cloneserver [guildID]',
   async execute(message, args) {
     await message.delete();
     const originalGuildID = args[0];

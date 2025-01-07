@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'watch',
   aliases: ['startwatch', 'setwatch'],
+  info: 'sets the user\'s watching status',
+  usage: 'watch [watching title]',
   async execute(message, content) {
     await message.delete();
     const activityDescription = content.slice(7).trim();

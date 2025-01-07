@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'pin',
   aliases: ['pinmessage'],
+  info: 'pins a message',
+  usage: 'pin [messageID]',
   async execute(message, args) {
     await message.delete();
     const messageId = args[1];

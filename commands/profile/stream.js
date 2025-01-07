@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'stream',
   aliases: ['startstream', 'setstream'],
+  info: 'sets the user\'s streaming status',
+  usage: 'stream [streaming description]',
   async execute(message, content) {
     await message.delete();
     const activityDescription = content.slice(8).trim();

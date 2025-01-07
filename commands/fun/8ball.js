@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: '8ball',
   aliases: ['eightball'],
+  info: 'asks the eightball a questions',
+  usage: '8ball',
   execute(message) {
     message.channel.send("Shaking the Magic 8-Ball... 🎱").then(eightballMessage => {
         const responses = [

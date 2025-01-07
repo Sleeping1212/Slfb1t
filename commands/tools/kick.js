@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'kick',
   aliases: ['kickuser', 'kicky'],
+  info: 'kicks a specified user',
+  usage: 'kick [@user]',
   async execute(message, args) {
     await message.delete();
     const userToKick = message.mentions.users.first() || args[0];

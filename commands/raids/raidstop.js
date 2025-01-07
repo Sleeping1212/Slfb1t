@@ -4,6 +4,8 @@ const raidState = require('../../managers/raidState.js');
 module.exports = {
   name: 'raidstop',
   aliases: ['endRaid', 'stopRaid'],
+  info: 'ends a raid',
+  usage: 'raidstop',
   async execute(message) {
 
     if (!raidState.raidActive) {

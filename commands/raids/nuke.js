@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger');
 module.exports = {
   name: 'nuke',
   aliases: ['n'],
+  description: 'Nukes a channel',
+  usage: 'nuke',
   async execute(message, args) {
     const channel = message.channel;
 

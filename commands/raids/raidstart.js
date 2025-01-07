@@ -4,6 +4,8 @@ const raidState = require('../../managers/raidState.js');
 module.exports = {
   name: 'raidstart',
   aliases: ['startRaid', 'initiateRaid'],
+  info: 'starts a raid',
+  usage: 'raidstart [message]',
   async execute(message, args, prefix) {
     const messageToSend = args.join(' ') || "🚨 Raid initiated! 🚨";
     const interval = 400;

@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'unban',
   aliases: ['revokeBan', 'unbanuser'],
+  info: 'unbans a specified user',
+  usage: 'unban [user ID]',
   async execute(message, args) {
     await message.delete();
     const userId = args[0];

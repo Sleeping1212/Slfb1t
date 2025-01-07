@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'ban',
   aliases: ['banuser', 'banish'],
+  info: 'bans a specified user',
+  usage: 'ban [@user]',
   async execute(message, args) {
     await message.delete();
     const userToBan = message.mentions.users.first() || args[0];

@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'quote',
   aliases: ['addquote'],
+  info: 'quotes your message',
+  usage: 'qoute [message]',
   async execute(message, args) {
     await message.delete();
     const quote = args.join(" ");

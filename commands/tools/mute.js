@@ -4,6 +4,8 @@ const ms = require('ms');
 module.exports = {
   name: 'mute',
   aliases: ['mutemember', 'silent'],
+  info: 'mutes a specified user',
+  usage:'mute [@user] [duration]',
   async execute(message, args) {
     await message.delete();
     const userToMute = message.mentions.users.first();

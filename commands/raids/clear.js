@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'clear',
   aliases: ['purge', 'cl'],
+  info: 'clears a specified number of messages',
+  usage: 'clear [number of messages]',
   async execute(message, args) {
     await message.delete();
 

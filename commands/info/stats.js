@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger');
 module.exports = {
   name: 'stats',
   aliases: ['stat'],
+  info: 'shows server statistics',
+  usage: `stats`,
   execute(message) {
     const memberCount = message.guild.memberCount;
     const roleCount = message.guild.roles.cache.size;

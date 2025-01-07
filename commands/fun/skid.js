@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'skid',
   aliases: ['ski', 'sk'],
+  info: 'checks if the user is a skid',
+  usage: 'skid [@user]',
   execute(message, args) {
     const userToCheck = message.mentions.users.first() || args[0] || message.author;
 

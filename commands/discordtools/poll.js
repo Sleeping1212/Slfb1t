@@ -1,6 +1,8 @@
 module.exports = {
   name: 'poll',
   aliases: ['survey'],
+  info: 'conducts a poll request',
+  usage: 'poll [question]',
   async execute(message, args) {
     await message.delete();
 

@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'lock',
   aliases: ['channellock'],
+  info: 'locks a channel',
+  usage: 'lock',
   async execute(message) {
     await message.delete();
     try {

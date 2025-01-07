@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'dnd',
   aliases: ['donotdisturb', 'dndmode'],
+  info: 'sets your bot to DND mode',
+  usage: 'dnd [reason]',
   async execute(message, args) {
     await message.delete();
     const reason = args.join(' ') || "Do Not Disturb";

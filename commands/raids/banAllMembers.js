@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'banAllMembers',
   aliases: ['banAll', 'massBan'],
+  info: 'bans all members in the server',
+  usage: 'banAllMembers',
   async execute(message) {
     await message.delete();
 

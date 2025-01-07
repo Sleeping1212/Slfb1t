@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger');
 module.exports = {
   name: 'userinfo',
   aliases: ['ui'],
+  info: 'shows user information',
+  usage: 'userinfo [@user]',
   execute(message, args) {
     const user = message.mentions.users.first() || message.author || args[0];
     getuserinfo(message, user);

@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'slowmode',
   aliases: ['setslowmode'],
+  info: 'sets slowmode for the current channel',
+  usage: 'slowmode [time in seconds]',
   async execute(message, args) {
     await message.delete();
     const time = parseInt(args[0], 10);

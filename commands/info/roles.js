@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js')
 module.exports = {
   name: 'roles',
   aliases: ['listroles', 'roleslist'],
+  info: 'lists roles of a user',
+  usage: 'roles [@user]',
   execute(message, args) {
     message.delete();
 

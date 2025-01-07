@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'listen',
   aliases: ['startlisten', 'setlisten'],
+  info: 'sets the user to listen to a song',
+  usage: 'listen [song]',
   async execute(message, content) {
     await message.delete();
     const activityDescription = content.slice(8).trim();

@@ -3,6 +3,8 @@ const { log } = require('../../utils/logger.js');
 module.exports = {
   name: 'announce',
   aliases: ['announcement'],
+  info: 'announces a message in announcement Channel',
+  usage: 'announce [message]',
   async execute(message, args) {
     await message.delete();
     const announcement = args.join(" ").trim();
