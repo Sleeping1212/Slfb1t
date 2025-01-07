@@ -79,7 +79,7 @@ client.on('messageCreate', (message) => {
   const command = client.commands.get(commandName);
   if (!command) return;
   if (args[0] === '--usage')  {
-    usageLoad(command, message);
+    usageLoad(command, message, prefix);
     return;
   }
   if (args[0] === '--info')  {
@@ -100,34 +100,23 @@ function rpc(client) {
     console.error("Client is not initialized or logged in.");
     return;
   }
-  const rich = {
-    name: "Hydrion S3LFB0T", 
-    type: 'PLAYING', 
-    state: "Using Selfbot",
-    details: "Hydrion S3LFB0T",
-    startTimestamp: Date.now(),
-    largeImageKey: "hydrion_icon", 
-    largeImageText: "Hydrion S3LFB0T",
-    buttons: [
-      {
-        label: "Self Bot",
-        url: "https://github.com/Hydrion-Tools/Hydrion-S3LFB0T"
-      },
-      {
-        label: "Discord",
-        url: "https://discord.gg/6Tufbvnebj"
-      }
-    ]
-  };
 
-  try {
-    client.user.setActivity(rich);
-    client.user.setPresence({ status: "online" });
-    log("Started Discord RPC");
-  } catch (error) {
-    console.error("Failed to set status:", error);
-  }
+  const status = new RichPresence(client)
+    .setApplicationId('1325482563908927620')
+    .setType("PLAYING")
+    .setName("Hydrion S3LFB0T")
+    .setDetails("Using Selfbot")
+    .setStartTimestamp(Date.now())
+    .setAssetsLargeImage("icon")  
+    .setAssetsLargeText("Hydrion S3LFB0T")
+    .addButton("Self Bot 🤖", "https://github.com/Hydrion-Tools/Hydrion-S3LFB0T")
+    .addButton("Discord 💬", "https://discord.gg/6Tufbvnebj");
+
+  client.user.setActivity(status);
+  console.log("Started Discord RPC");
 }
+
+
 
 let updated = checkUpdate(Json);
 if (updated) {

@@ -19,8 +19,8 @@ function loadinfomsg(page, prefix) {
 > 📊 **Command List:**
 > 📈 **${prefix}stats**
 > 🏓 **${prefix}ping**
-> 🔍 **${prefix}userinfo @user**
-> 🖼️ **${prefix}pfp @user**
+> 🔍 **${prefix}userinfo**
+> 🖼️ **${prefix}pfp**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
     `)
@@ -28,7 +28,7 @@ function loadinfomsg(page, prefix) {
   if (page == 2) {
     return(`
 > ## 🌟 **Info Commands - Page 2** 🌟
-> 👥 **${prefix}roles @user**
+> 👥 **${prefix}roles**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
     `)

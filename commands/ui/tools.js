@@ -17,11 +17,11 @@ function loadtoolsmsg(page, prefix) {
     return(`
 > ## 🚨 **Tools Commands - Page 1** 🚨
 > ⚔️ **Command List:**
-> 👤 **${prefix}kick @user**
-> 🚫 **${prefix}ban @user**
-> 🔓 **${prefix}unban userID**
-> 🔇 **${prefix}mute @user duration**
-> 📝 **${prefix}cloneserver <server id>**
+> 👤 **${prefix}kick**
+> 🚫 **${prefix}ban**
+> 🔓 **${prefix}unban**
+> 🔇 **${prefix}mute**
+> 📝 **${prefix}cloneserver**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
     `)

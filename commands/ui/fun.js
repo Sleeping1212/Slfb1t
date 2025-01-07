@@ -19,7 +19,7 @@ function loadfunmsg(page, prefix) {
 > 🕹️ **Command List:**
 > 💖 **${prefix}rizz**
 > 😂 **${prefix}joke**
-> 🎱 **${prefix}8ball <question>**
+> 🎱 **${prefix}8ball**
 > 🪙 **${prefix}coinflip**
 > 🤣 **${prefix}meme**
 > 
@@ -30,8 +30,8 @@ function loadfunmsg(page, prefix) {
     return(`
 > ## 🎉 **Fun Commands - Page 2** 🎉
 > 🕹️ **Command List:**
-> 🌈 **${prefix}gay <@user>**
-> 💻 **${prefix}skid <@user>**
+> 🌈 **${prefix}gay**
+> 💻 **${prefix}skid**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
       `)

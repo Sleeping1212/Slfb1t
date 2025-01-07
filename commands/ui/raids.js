@@ -17,11 +17,11 @@ function loadraidmsg(page, prefix) {
     return(`
 > ## 🚨 **Raids Commands - Page 1** 🚨
 > ⚔️ **Command List:**
-> 🌪️ **${prefix}spam <amount> <interval in ms> <msg>**           
-> 💥 **${prefix}nuke**                                          
-> 🚀 **${prefix}raidstart <msg>**                                
-> 🛡️ **${prefix}raidstop**                                      
-> 🔧 **${prefix}clear <number>**                                 
+> 🌪️ **${prefix}spam**
+> 💥 **${prefix}nuke**
+> 🚀 **${prefix}raidstart**
+> 🛡️ **${prefix}raidstop**
+> 🔧 **${prefix}clear**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
     `);

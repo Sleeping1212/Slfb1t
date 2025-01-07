@@ -19,10 +19,10 @@ function loadprofilemsg(page, prefix) {
 > 🔍 **Command List:**
 > 💤 **${prefix}afk**
 > 🚶‍♂️ **${prefix}unafk**
-> 🎮 **${prefix}play [game]**
-> 🎥 **${prefix}stream [title]**
-> 📺 **${prefix}watch [title]**
-> 🎶 **${prefix}listen [song]**
+> 🎮 **${prefix}play**
+> 🎥 **${prefix}stream**
+> 📺 **${prefix}watch**
+> 🎶 **${prefix}listen**
 > ⏹️ **${prefix}stopactivity**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
@@ -32,8 +32,8 @@ function loadprofilemsg(page, prefix) {
     return(`
 > ## 👤 **Profile Commands - Page 2** 👤
 > 🔍 **Command List:**
-> 🔴 **${prefix}dnd [reason]**
-> 🌙 **${prefix}idle [description]**
+> 🔴 **${prefix}dnd**
+> 🌙 **${prefix}idle**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
       `)

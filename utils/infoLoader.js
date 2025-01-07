@@ -1,13 +1,7 @@
-const { log } = require('./logger');
-
-const infoLoad = (command, message) => {
-  log(`Info Command has been excuted for ${command}`);
-  if (command === 'raids' || command === 'r' || command === 'raid') {
-    message.channel.send('🚨This command is used to view the raid commands.');
-  }
-  else if (command === 'ping' || command === 'p') {
-    message.channel.send('🏓This command is used to check ping');
-  }
+function infoLoad(command, message) {
+    let infoMsg = `ℹ️ **Info about \`${command.name}\`**: \`${command.info}\``;
+    message.delete();
+    message.channel.send(infoMsg)
 }
 
-module.exports = { infoLoad };
+module.exports = { infoLoad }

@@ -17,11 +17,11 @@ function loaddiscordtoolsmsg(page, prefix) {
     return(`
 > ## 🛠️ **Discord Tools - Page 1** 🛠️
 > 🔍 **Command List:**
-> 📌 **${prefix}pin [messageID]**
-> 🧹 **${prefix}purge @user [number]**
+> 📌 **${prefix}pin**
+> 🧹 **${prefix}purge**
 > 🔒 **${prefix}lock**
 > 🔓 **${prefix}unlock**
-> 📄 **${prefix}archive [number]**
+> 📄 **${prefix}archive**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
       `);
@@ -29,11 +29,11 @@ function loaddiscordtoolsmsg(page, prefix) {
     return(`
 > ## 🛠️ **Discord Tools - Page 2** 🛠️
 > 🔍 **Command List:**
-> 📢 **${prefix}announce [message]**
-> ⚠️ **${prefix}warn @user <reason>**
-> 💬 **${prefix}quote <message>**
-> 🐌 **${prefix}slowmode <time>**
-> 🌐 **${prefix}translate <lang> <text>**
+> 📢 **${prefix}announce**
+> ⚠️ **${prefix}warn**
+> 💬 **${prefix}quote**
+> 🐌 **${prefix}slowmode**
+> 🌐 **${prefix}translate**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
       `);
@@ -41,9 +41,9 @@ function loaddiscordtoolsmsg(page, prefix) {
     return(`
 > ## 🛠️ **Discord Tools - Page 3** 🛠️
 > 🔍 **Command List:**
-> 📊 **${prefix}poll <question>**
-> ⏰ **${prefix}remind <time> <message>**
-> 📬 **${prefix}dm @user <message>**
+> 📊 **${prefix}poll**
+> ⏰ **${prefix}remind**
+> 📬 **${prefix}dm**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
       `);

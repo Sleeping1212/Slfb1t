@@ -15,7 +15,6 @@ module.exports = {
 
     const statsMessage = (`
 > ## 📊 **Server Stats** 📊
->
 > **Server Name:** ${servername}
 > **Server Created:** ${servercreated}
 > **Server Owner:** ${serverowner}
