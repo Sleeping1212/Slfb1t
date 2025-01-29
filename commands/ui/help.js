@@ -23,7 +23,7 @@ function helpmsg(prefix) {
 > 👤 **${prefix}profile**
 > 
 > ✨ Add --info or --usage After a Command to Get more Information about it.
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
 
     `)
 }
