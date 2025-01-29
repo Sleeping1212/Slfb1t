@@ -18,10 +18,10 @@ function loaddiscordtoolsmsg(page, prefix) {
 > ## 🛠️ **Discord Tools - Page 1** 🛠️
 > 🔍 **Command List:**
 > 📌 **${prefix}pin**
-> 🧹 **${prefix}purge**
 > 🔒 **${prefix}lock**
 > 🔓 **${prefix}unlock**
 > 📄 **${prefix}archive**
+> 📄 **${prefix}cloneserver**
 > 
 > ✨ Selfbot crafted by \`@hydradevx\`
       `);
@@ -44,8 +44,6 @@ function loaddiscordtoolsmsg(page, prefix) {
 > 📊 **${prefix}poll**
 > ⏰ **${prefix}remind**
 > 📬 **${prefix}dm**
-> 📄 **${prefix}cloneserver**
-> 
 > ✨ Selfbot crafted by \`@hydradevx\`
       `);
     }else {
