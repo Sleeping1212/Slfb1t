@@ -28,7 +28,7 @@ function getuserinfo(message, mentionedUser) {
 > **Account Created On:** ${createdAt}
 > **Current Status:** ${status}
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
 `;
 
 
