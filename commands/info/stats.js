@@ -26,7 +26,7 @@ module.exports = {
 > **Server ID:** ${serverid}
 > **Server Icon:** ${servericon}
 > 
-> ✨ Selfbot crafted by \`@hydra_devx\`
+> ✨ Selfbot crafted by \`@slaves\`
 `);
     
   message.channel.send(statsMessage);
