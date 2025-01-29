@@ -23,7 +23,7 @@ function loadfunmsg(page, prefix) {
 > 🪙 **${prefix}coinflip**
 > 🤣 **${prefix}meme**
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
     `)
   }
   else if(page == 2) {
@@ -33,7 +33,7 @@ function loadfunmsg(page, prefix) {
 > 🌈 **${prefix}gay**
 > 💻 **${prefix}skid**
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
       `)
   }
   else {
