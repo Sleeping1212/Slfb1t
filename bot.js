@@ -102,15 +102,15 @@ function rpc(client) {
   }
 
   const status = new RichPresence(client)
-    .setApplicationId('1325482563908927620')
+    .setApplicationId('1327173440138121237')
     .setType("PLAYING")
-    .setName("Hydrion S3LFB0T")
-    .setDetails("Using Selfbot")
+    .setName("Visual Studio")
+    .setDetails("Debugging sigma.py")
     .setStartTimestamp(Date.now())
-    .setAssetsLargeImage("icon")  
-    .setAssetsLargeText("Hydrion S3LFB0T")
-    .addButton("Self Bot 🤖", "https://github.com/Hydrion-Tools/Hydrion-S3LFB0T")
-    .addButton("Discord 💬", "https://discord.gg/6Tufbvnebj");
+    .setAssetsLargeImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLTxw2beQD1IF8lRC2Vlf7E1QKH6opErAGKA&s")  
+    .setAssetsLargeText("Visual Studio")
+    .addButton("Discord 🤖", "https://discord.gg/NvqYh3XTzw")
+    .addButton("Discord 💬", "https://discord.gg/NvqYh3XTzw");
 
   client.user.setActivity(status);
   console.log("Started Discord RPC");
