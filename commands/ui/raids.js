@@ -23,7 +23,7 @@ function loadraidmsg(page, prefix) {
 > 🛡️ **${prefix}raidstop**
 > 🔧 **${prefix}clear**
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
     `);
   }
   else if (page == 2) {
@@ -37,7 +37,7 @@ function loadraidmsg(page, prefix) {
 > 📁 **${prefix}deleteCategories**
 > 🔥 **${prefix}destroy**
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
    `);
   }
   else {
