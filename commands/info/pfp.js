@@ -12,7 +12,7 @@ module.exports = {
     message.channel.send(`
       ${user.username}'s Profile Picture
       \n
-      ${avatar}
+      [.](${avatar})
     `);
     log(`Pfp command has been executed on ${user.username}`)
     message.delete();
