@@ -16,7 +16,7 @@ module.exports = {
 > 
 > **Example usage:** ${currentPrefix}help
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
     `;
 
     message.channel.send(prefixMessage);
