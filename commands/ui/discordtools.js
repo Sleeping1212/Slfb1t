@@ -23,7 +23,7 @@ function loaddiscordtoolsmsg(page, prefix) {
 > 📄 **${prefix}archive**
 > 📄 **${prefix}cloneserver**
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
       `);
   }else if (page == 2) {
     return(`
@@ -35,7 +35,7 @@ function loaddiscordtoolsmsg(page, prefix) {
 > 🐌 **${prefix}slowmode**
 > 🌐 **${prefix}translate**
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ crafted by \`@slaves\`
       `);
   } else if (page == 3) { 
     return(`
@@ -44,7 +44,7 @@ function loaddiscordtoolsmsg(page, prefix) {
 > 📊 **${prefix}poll**
 > ⏰ **${prefix}remind**
 > 📬 **${prefix}dm**
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ crafted by \`@slaves\`
       `);
     }else {
         return('> ✨ **More Commands Coming Soon!** ✨');
