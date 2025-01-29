@@ -25,7 +25,7 @@ function loadprofilemsg(page, prefix) {
 > 🎶 **${prefix}listen**
 > ⏹️ **${prefix}stopactivity**
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
     `)
   }
   else if(page == 2) {
@@ -35,7 +35,7 @@ function loadprofilemsg(page, prefix) {
 > 🔴 **${prefix}dnd**
 > 🌙 **${prefix}idle**
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
       `)
   }
   else {
