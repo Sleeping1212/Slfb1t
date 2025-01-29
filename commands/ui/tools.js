@@ -23,7 +23,7 @@ function loadtoolsmsg(page, prefix) {
 > 🔇 **${prefix}mute**
 > 📝 **${prefix}cloneserver**
 > 
-> ✨ Selfbot crafted by \`@hydradevx\`
+> ✨ Selfbot crafted by \`@slaves\`
     `)
   }
   else {
